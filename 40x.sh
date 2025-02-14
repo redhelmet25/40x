@@ -126,6 +126,7 @@ main() {
         "X-Rewrite-URL: $path"
         "X-Host: 127.0.0.1"
         "X-Forwarded-Host: 127.0.0.1"
+        "Forwarded: host=google.com"
         "Content-Length: 0"
     )
 
