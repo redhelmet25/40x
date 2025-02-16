@@ -12,7 +12,7 @@ perform_request() {
     local headers=$3
 
     # Perform the curl request and capture HTTP code and size in one go
-    response=$(curl -k -s -o /dev/null -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" -iL -w "%{http_code},%{size_download}" -X "$method" -H "$headers" "$url")
+    response=$(curl --connect-timeout 3 --max-time 5 -k -s -o /dev/null -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" -iL -w "%{http_code},%{size_download}" -X "$method" -H "$headers" "$url")
     http_code=$(echo "$response" | cut -d',' -f1)
     size_download=$(echo "$response" | cut -d',' -f2)
 
